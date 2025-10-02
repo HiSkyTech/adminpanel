@@ -1,0 +1,73 @@
+.assignments {
+  margin-left: 220px; /* Matches sidebar width */
+  margin-top: 60px; /* Matches topbar height */
+  padding: 20px;
+  min-height: calc(100vh - 60px); /* Ensures content fills viewport height minus topbar */
+  background-color: #f8f9fa; /* Light background for contrast */
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Responsive design for tablets */
+@media (max-width: 768px) {
+  .assignments {
+    margin-left: 180px; /* Matches sidebar width for tablets */
+    padding: 15px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+  .assignments {
+    margin-left: 0; /* No offset since sidebar is no longer fixed */
+    margin-top: 60px; /* Still account for topbar height */
+    padding: 10px;
+  }
+
+  .content {
+    gap: 15px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+}

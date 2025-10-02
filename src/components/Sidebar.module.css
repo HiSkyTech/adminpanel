@@ -1,0 +1,83 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Increased opacity and adjusted blur/spread */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease;
+}
+
+.logo {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav a {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.nav a:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+/* Responsive design for tablets */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+    padding: 15px;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Consistent shadow for tablets */
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .nav a {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Adjusted shadow for mobile */
+    padding: 10px;
+  }
+  
+  .logo {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .nav {
+    gap: 10px;
+  }
+  
+  .nav a {
+    font-size: 0.85rem;
+    padding: 5px;
+  }
+}

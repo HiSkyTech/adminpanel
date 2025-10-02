@@ -1,0 +1,44 @@
+.topbar {
+  height: 60px;
+  background-color: #f4f4f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #ddd;
+  margin-left: 280px; /* Matches sidebar width */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure topbar stays above other content */
+  transition: margin-left 0.3s ease;
+}
+
+.logout {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #d9363e;
+}
+
+/* Responsive design for tablets */
+@media (max-width: 768px) {
+  .topbar {
+    margin-left: 180px; /* Matches sidebar width for tablets */
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+  .topbar {
+    margin-left: 0; /* No offset since sidebar is no longer fixed */
+    position: static; /* Topbar flows naturally on mobile */
+  }
+}
