@@ -70,16 +70,20 @@
 // export default App;
 
 
-
+import './App.module.css';
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Coaches from "./pages/Coaches";
 import FoodPlans from "./pages/FoodPlans";
-import Assignments from "./pages/Assignments";
+import Exercise from "./pages/Exercise";  
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
+import FAQ from "./pages/Faq";
 import Login from "./pages/Login";
 import Layout from "./components/Layout";
+import Payment from "./pages/Payment"; 
+import Subscription from "./pages/Subscription"; // ✅ Subscription page
 
 function App() {
   return (
@@ -121,10 +125,42 @@ function App() {
         }
       />
       <Route
-        path="/assignments"
+        path="/exercise"
         element={
           <Layout>
-            <Assignments />
+            <Exercise />
+          </Layout>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <Layout>
+            <Payment />
+          </Layout>
+        }
+      />
+      <Route
+        path="/subscription"          // ✅ Added Subscription route
+        element={
+          <Layout>
+            <Subscription />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <Profile />
+          </Layout>
+        }
+      />
+      <Route
+        path="/faq"
+        element={
+          <Layout>
+            <FAQ />
           </Layout>
         }
       />

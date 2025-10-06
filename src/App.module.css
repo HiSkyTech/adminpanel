@@ -1,11 +1,7 @@
-.container {
-  display: flex;
-  min-height: 100vh;
-}
-
-.main {
-  margin-left: 220px; /* same width as the sidebar */
-  padding: 20px;
-  flex: 1;
-  background: #f5f7fb;
+/* src/App.css */
+body {
+  margin: 0;
+  background-color: #1a1a1a;
+  color: white; /* optional */
+  font-family: sans-serif;
 }

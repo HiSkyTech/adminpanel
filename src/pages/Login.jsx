@@ -1,12 +1,12 @@
 import styles from "./Login.module.css";
-
+import myPic from "../assets/gym.jpeg";
 function Login() {
   return (
     <div className={styles.container}>
       {/* Left Section (Image / Logo) */}
       <div className={styles.left}>
         {/* You will add your image or logo here */}
-        <img src="/your-logo.png" alt="Logo" className={styles.logo} />
+  <img src={myPic} alt="Logo" className={styles.logo} />
       </div>
 
       {/* Right Section (Form) */}

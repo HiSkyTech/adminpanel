@@ -1,0 +1,283 @@
+/* Container */
+.addRecipe {
+  margin-left: 200px;
+  margin-top: 65px;
+  padding: 32px;
+  min-height: calc(100vh - 65px);
+  background-color: #1a1a1a;
+  display: flex;
+  gap: 24px;
+}
+
+.mainSection {
+  flex: 1;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+/* Form */
+.form {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #1a1a1a;
+  color: white;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Upload Box */
+.uploadBox {
+  border: 2px dashed #3a3a3a;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  background: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploadBox:hover {
+  border-color: #667eea;
+  background: #252525;
+}
+
+.uploadIcon {
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.uploadBox p {
+  color: #aaa;
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+}
+
+.uploadBox span {
+  color: #666;
+  font-size: 0.75rem;
+}
+
+/* Ingredient/Instruction Rows */
+.ingredientRow,
+.instructionRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.inputSmall {
+  width: 100px;
+  padding: 8px 12px;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: white;
+}
+
+.selectSmall {
+  width: 120px;
+  padding: 8px 12px;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: white;
+}
+
+.stepNumber {
+  width: 32px;
+  height: 32px;
+  background: #f59e0b;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.deleteBtn {
+  width: 36px;
+  height: 36px;
+  background: #3a3a3a;
+  border: none;
+  border-radius: 6px;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.deleteBtn:hover {
+  background: #4a4a4a;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px dashed #3a3a3a;
+  color: #aaa;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.addBtn:hover {
+  border-color: #667eea;
+  color: white;
+}
+
+/* Nutrition Row */
+.nutritionRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancelBtn {
+  padding: 12px 32px;
+  background: #3a3a3a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveBtn {
+  padding: 12px 32px;
+  background: #f59e0b;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background: #d97706;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.sidebarSection {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebarTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 16px 0;
+}
+
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #222;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.categoryInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.categoryIcon {
+  font-size: 1.2rem;
+}
+
+.categoryName {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.categoryCount {
+  background: #f59e0b;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.recentItem {
+  display: flex;
+}

@@ -1,83 +1,190 @@
+/* Sidebar (visible by default on laptop, hidden on mobile) */
 .sidebar {
-  width: 220px;
+  width: 200px;
   height: 100vh;
-  background-color: white;
-  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Increased opacity and adjusted blur/spread */
+  background: #1a1a1a;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 24px 16px;
   position: fixed;
   left: 0;
   top: 0;
-  transition: width 0.3s ease;
+  z-index: 999;
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo {
-  font-size: 1.4rem;
-  margin-bottom: 30px;
-  color: black;
+/* Hide sidebar on mobile by default */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
 }
 
+/* Overlay - only needed for mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Toggle Button - Smaller size and only show on mobile */
+.mobileMenuBtn {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  background: #2a2a2a;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #a0a0a0;
+  transition: all 0.3s ease;
+  width: 25px;
+  height: 25px;
+}
+
+.mobileMenuBtn:hover {
+  background: #3a3a3a;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Show toggle button only on mobile */
+@media (max-width: 1024px) {
+  .mobileMenuBtn {
+    display: block;
+  }
+}
+
+/* Logo Container */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 12px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  border: 1px solid #3a3a3a;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.logoText {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+/* Navigation */
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 6px;
+  flex: 1;
+  margin-bottom: 40px;
 }
 
-.nav a {
-  color: black;
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #888;
   text-decoration: none;
-  font-size: 1rem;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.nav a:hover {
-  background-color: #f0f0f0;
-  color: black;
+.navLink:hover {
+  background: #2a2a2a;
+  color: #ccc;
+  transform: translateX(2px);
 }
 
-/* Responsive design for tablets */
+.navLink.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.navLink.active .navIcon {
+  color: white;
+}
+
+.navIcon {
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  color: #888;
+}
+
+.navLabel {
+  white-space: nowrap;
+}
+
+/* Sidebar Footer (optional if needed) */
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #3a3a3a;
+}
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .sidebar {
-    width: 180px;
-    padding: 15px;
-    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Consistent shadow for tablets */
+    width: 220px;
+    padding: 20px 12px;
   }
-  
-  .logo {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+  .logoText {
+    font-size: 1.15rem;
   }
-  
-  .nav a {
+  .navLink {
     font-size: 0.9rem;
-    padding: 6px;
+    padding: 10px 14px;
   }
 }
 
-/* Responsive design for mobile */
 @media (max-width: 480px) {
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Adjusted shadow for mobile */
-    padding: 10px;
+    width: 180px;
+    max-width: 85vw;
   }
-  
-  .logo {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-  }
-  
-  .nav {
-    gap: 10px;
-  }
-  
-  .nav a {
+  .navLink {
     font-size: 0.85rem;
-    padding: 5px;
+    padding: 10px 12px;
   }
 }
