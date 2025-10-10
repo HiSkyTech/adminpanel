@@ -1,197 +1,325 @@
-// src/pages/Payment.jsx
-import { Search, Download, Eye, DollarSign, CreditCard } from "lucide-react";
-import { useState } from "react";
-import styles from "./Payment.module.css";
+import React, { useState } from 'react';
+import { DollarSign, TrendingUp, CreditCard, Clock, Eye, Filter, FileText } from 'lucide-react';
+import styles from './Payment.module.css';
 
-function Payment() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [payments, setPayments] = useState([
-    { 
-      id: 1, 
-      transactionId: "TXN001234567", 
-      user: "John Doe", 
-      amount: 49.99, 
-      paymentMethod: "Credit Card", 
-      plan: "Premium Monthly", 
-      status: "Completed", 
-      date: "2024-06-15" 
-    },
-    { 
-      id: 2, 
-      transactionId: "TXN001234568", 
-      user: "Jane Smith", 
-      amount: 99.99, 
-      paymentMethod: "PayPal", 
-      plan: "Premium Yearly", 
-      status: "Completed", 
-      date: "2024-06-14" 
-    },
-    { 
-      id: 3, 
-      transactionId: "TXN001234569", 
-      user: "Bob Johnson", 
-      amount: 29.99, 
-      paymentMethod: "Debit Card", 
-      plan: "Basic Monthly", 
-      status: "Pending", 
-      date: "2024-06-13" 
-    },
-    { 
-      id: 4, 
-      transactionId: "TXN001234570", 
-      user: "Alice Brown", 
-      amount: 49.99, 
-      paymentMethod: "Credit Card", 
-      plan: "Premium Monthly", 
-      status: "Failed", 
-      date: "2024-06-12" 
-    },
-    { 
-      id: 5, 
-      transactionId: "TXN001234571", 
-      user: "Charlie Wilson", 
-      amount: 199.99, 
-      paymentMethod: "Bank Transfer", 
-      plan: "Enterprise Yearly", 
-      status: "Completed", 
-      date: "2024-06-11" 
-    },
-  ]);
+export default function Payment() {
+  const [timeRange, setTimeRange] = useState('Last 30 Days');
 
-  const filteredPayments = payments.filter(payment =>
-    payment.user.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    payment.transactionId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    payment.plan.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const stats = [
+    {
+      id: 1,
+      icon: DollarSign,
+      title: 'Total Revenue',
+      value: '$45,890',
+      change: '+12.5%',
+      changePositive: true,
+      bgColor: styles.stat1Bg,
+      iconColor: styles.stat1Icon
+    },
+    {
+      id: 2,
+      icon: TrendingUp,
+      title: 'Coach Payouts',
+      value: '$32,123',
+      change: '+8.3%',
+      changePositive: true,
+      bgColor: styles.stat2Bg,
+      iconColor: styles.stat2Icon
+    },
+    {
+      id: 3,
+      icon: CreditCard,
+      title: 'Platform Earnings',
+      value: '$13,767',
+      change: '+16.2%',
+      changePositive: true,
+      bgColor: styles.stat3Bg,
+      iconColor: styles.stat3Icon
+    },
+    {
+      id: 4,
+      icon: Clock,
+      title: 'Pending Payments',
+      value: '$2,450',
+      change: '5 Pending',
+      changePositive: false,
+      bgColor: styles.stat4Bg,
+      iconColor: styles.stat4Icon
+    }
+  ];
 
-  const totalRevenue = payments.reduce((sum, payment) => 
-    payment.status === "Completed" ? sum + payment.amount : sum, 0
-  );
+  const coaches = [
+    {
+      id: 1,
+      name: 'Alex Johnson',
+      clients: '28 clients',
+      earnings: '$8,450',
+      period: 'This month',
+      avatar: 'AJ',
+      avatarColor: styles.avatar1
+    },
+    {
+      id: 2,
+      name: 'Maria Garcia',
+      clients: '31 clients',
+      earnings: '$9,230',
+      period: 'This month',
+      avatar: 'MG',
+      avatarColor: styles.avatar2
+    },
+    {
+      id: 3,
+      name: 'David Lee',
+      clients: '22 clients',
+      earnings: '$7,890',
+      period: 'This month',
+      avatar: 'DL',
+      avatarColor: styles.avatar3
+    }
+  ];
+
+  const transactions = [
+    {
+      id: 1,
+      type: 'Client Payment',
+      description: 'Emma Wilson - Premium Plan',
+      amount: '+$149.99',
+      date: '2025-03-15',
+      status: 'Completed',
+      statusColor: styles.statusCompleted,
+      icon: DollarSign,
+      iconBg: styles.iconBg1,
+      iconColor: styles.iconColor1,
+      isPositive: true
+    },
+    {
+      id: 2,
+      type: 'Coach Payout',
+      description: 'Alex Johnson - Monthly Earnings',
+      amount: '-$2,340.00',
+      date: '2025-03-14',
+      status: 'Processing',
+      statusColor: styles.statusProcessing,
+      icon: TrendingUp,
+      iconBg: styles.iconBg2,
+      iconColor: styles.iconColor2,
+      isPositive: false
+    },
+    {
+      id: 3,
+      type: 'Refund Issued',
+      description: 'David Wilson - Basic Plan',
+      amount: '-$79.99',
+      date: '2025-03-13',
+      status: 'Completed',
+      statusColor: styles.statusCompleted,
+      icon: CreditCard,
+      iconBg: styles.iconBg3,
+      iconColor: styles.iconColor3,
+      isPositive: false
+    }
+  ];
+
+  // Chart data for Revenue Trend
+  const chartData = [
+    { value: 6.5, highlight: false },
+    { value: 4.2, highlight: false },
+    { value: 7.8, highlight: false },
+    { value: 3.9, highlight: false },
+    { value: 8.4, highlight: true },
+    { value: 5.1, highlight: false },
+    { value: 7.2, highlight: false },
+    { value: 9.1, highlight: false },
+    { value: 4.8, highlight: false },
+    { value: 6.9, highlight: false }
+  ];
+
+  const maxValue = Math.max(...chartData.map(d => d.value));
 
   return (
-    <div className={styles.payment}>
-      <div className={styles.header}>
-        <div>
-          <h2 className={styles.title}>Payment Management</h2>
-          <p className={styles.subtitle}>Track and manage all payment transactions</p>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        {/* Header */}
+        <div className={styles.header}>
+          <div>
+            <h1 className={styles.title}>Payment Monitoring</h1>
+            <p className={styles.subtitle}>
+              Track revenue, coach payouts, and financial performance.
+            </p>
+          </div>
+          <div className={styles.headerControls}>
+            <select
+              value={timeRange}
+              onChange={(e) => setTimeRange(e.target.value)}
+              className={styles.timeSelect}
+            >
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+              <option>Last 90 Days</option>
+              <option>This Year</option>
+            </select>
+            <button className={styles.exportButton}>
+              <FileText className={styles.iconSmall} />
+              Export Report
+            </button>
+          </div>
         </div>
-        <button className={styles.exportButton}>
-          <Download size={18} />
-          <span>Export Report</span>
-        </button>
-      </div>
 
-      <div className={styles.statsContainer}>
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} style={{ backgroundColor: '#f0fdf4' }}>
-            <DollarSign size={24} style={{ color: '#10b981' }} />
-          </div>
-          <div className={styles.statContent}>
-            <p className={styles.statLabel}>Total Revenue</p>
-            <h3 className={styles.statValue}>${totalRevenue.toFixed(2)}</h3>
-          </div>
+        {/* Stats Grid */}
+        <div className={styles.statsGrid}>
+          {stats.map((stat) => (
+            <div key={stat.id} className={styles.statCard}>
+              <div className={styles.statHeader}>
+                <div className={`${styles.statIcon} ${stat.bgColor}`}>
+                  <stat.icon className={`${styles.statIconSvg} ${stat.iconColor}`} />
+                </div>
+                <span className={`${styles.statChange} ${
+                  stat.changePositive ? styles.changePositive : styles.changeNegative
+                }`}>
+                  {stat.change}
+                </span>
+              </div>
+              <h3 className={styles.statValue}>{stat.value}</h3>
+              <p className={styles.statTitle}>{stat.title}</p>
+            </div>
+          ))}
         </div>
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} style={{ backgroundColor: '#f0f3ff' }}>
-            <CreditCard size={24} style={{ color: '#667eea' }} />
-          </div>
-          <div className={styles.statContent}>
-            <p className={styles.statLabel}>Total Transactions</p>
-            <h3 className={styles.statValue}>{payments.length}</h3>
-          </div>
-        </div>
-      </div>
 
-      <div className={styles.controls}>
-        <div className={styles.searchContainer}>
-          <Search size={18} className={styles.searchIcon} />
-          <input
-            type="text"
-            placeholder="Search payments..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className={styles.searchInput}
-          />
-        </div>
-        <div className={styles.filters}>
-          <select className={styles.filterSelect}>
-            <option value="">All Methods</option>
-            <option value="creditcard">Credit Card</option>
-            <option value="paypal">PayPal</option>
-            <option value="debitcard">Debit Card</option>
-            <option value="banktransfer">Bank Transfer</option>
-          </select>
-          <select className={styles.filterSelect}>
-            <option value="">All Status</option>
-            <option value="completed">Completed</option>
-            <option value="pending">Pending</option>
-            <option value="failed">Failed</option>
-          </select>
-        </div>
-      </div>
+        {/* Charts Row */}
+        <div className={styles.chartsRow}>
+          {/* Revenue Trend Chart */}
+          <div className={styles.chartCard}>
+            <h2 className={styles.chartTitle}>Revenue Trend</h2>
+            <div className={styles.chartContainer}>
+              {chartData.map((data, index) => (
+                <div key={index} className={styles.chartBarWrapper}>
+                  <div className={styles.chartPoint} style={{ bottom: `${(data.value / maxValue) * 100}%` }}></div>
+                  <div 
+                    className={`${styles.chartBar} ${data.highlight ? styles.chartBarHighlight : styles.chartBarNormal}`}
+                    style={{ height: `${(data.value / maxValue) * 200}px` }}
+                  ></div>
+                </div>
+              ))}
+            </div>
+            <div className={styles.chartLabels}>
+              <span>$ 0</span>
+              <span>$ 5k</span>
+              <span>$ 10k</span>
+            </div>
+          </div>
 
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Transaction ID</th>
-              <th>User</th>
-              <th>Amount</th>
-              <th>Payment Method</th>
-              <th>Plan</th>
-              <th>Status</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredPayments.map((payment) => (
-              <tr key={payment.id}>
-                <td>{payment.id}</td>
-                <td className={styles.transactionId}>{payment.transactionId}</td>
-                <td className={styles.userName}>{payment.user}</td>
-                <td className={styles.amount}>${payment.amount.toFixed(2)}</td>
-                <td>
-                  <span className={styles.paymentMethod}>
-                    {payment.paymentMethod}
-                  </span>
-                </td>
-                <td className={styles.plan}>{payment.plan}</td>
-                <td>
-                  <span className={`${styles.status} ${styles[payment.status.toLowerCase()]}`}>
-                    {payment.status}
-                  </span>
-                </td>
-                <td>{payment.date}</td>
-                <td>
-                  <div className={styles.actions}>
-                    <button className={styles.actionBtn} title="View Details">
-                      <Eye size={16} />
-                    </button>
-                    <button className={styles.actionBtn} title="Download Receipt">
-                      <Download size={16} />
-                    </button>
+          {/* Coach Performance */}
+          <div className={styles.coachCard}>
+            <h2 className={styles.chartTitle}>Coach Performance</h2>
+            <div className={styles.coachList}>
+              {coaches.map((coach) => (
+                <div key={coach.id} className={styles.coachItem}>
+                  <div className={styles.coachInfo}>
+                    <div className={`${styles.coachAvatar} ${coach.avatarColor}`}>
+                      {coach.avatar}
+                    </div>
+                    <div>
+                      <h3 className={styles.coachName}>{coach.name}</h3>
+                      <p className={styles.coachClients}>{coach.clients}</p>
+                    </div>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                  <div className={styles.coachEarnings}>
+                    <p className={styles.earningsAmount}>{coach.earnings}</p>
+                    <p className={styles.earningsPeriod}>{coach.period}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-      <div className={styles.pagination}>
-        <p className={styles.paginationText}>Showing {filteredPayments.length} of {payments.length} payments</p>
-        <div className={styles.paginationButtons}>
-          <button className={styles.pageBtn}>Previous</button>
-          <button className={`${styles.pageBtn} ${styles.active}`}>1</button>
-          <button className={styles.pageBtn}>2</button>
-          <button className={styles.pageBtn}>3</button>
-          <button className={styles.pageBtn}>Next</button>
+        {/* Recent Transactions */}
+        <div className={styles.transactionsCard}>
+          <div className={styles.transactionsHeader}>
+            <h2 className={styles.transactionsTitle}>Recent Transactions</h2>
+            <button className={styles.filterButton}>
+              <Filter className={styles.iconMedium} />
+            </button>
+          </div>
+
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr className={styles.tableHeaderRow}>
+                  <th className={styles.tableHeader}>Transaction</th>
+                  <th className={styles.tableHeader}>Type</th>
+                  <th className={styles.tableHeader}>Amount</th>
+                  <th className={styles.tableHeader}>Date</th>
+                  <th className={styles.tableHeader}>Status</th>
+                  <th className={styles.tableHeader}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((transaction) => (
+                  <tr key={transaction.id} className={styles.tableRow}>
+                    <td className={styles.tableCell}>
+                      <div className={styles.transactionInfo}>
+                        <div className={`${styles.transactionIcon} ${transaction.iconBg}`}>
+                          <transaction.icon className={`${styles.transactionIconSvg} ${transaction.iconColor}`} />
+                        </div>
+                        <div>
+                          <div className={styles.transactionType}>{transaction.type}</div>
+                          <div className={styles.transactionDescription}>{transaction.description}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className={styles.tableCell}>
+                      <span className={`${styles.typeBadge} ${
+                        transaction.type.includes('Payment') ? styles.typePayment :
+                        transaction.type.includes('Payout') ? styles.typePayout :
+                        styles.typeRefund
+                      }`}>
+                        {transaction.type.split(' ')[0]}
+                      </span>
+                    </td>
+                    <td className={styles.tableCell}>
+                      <span className={`${styles.amount} ${
+                        transaction.isPositive ? styles.amountPositive : styles.amountNegative
+                      }`}>
+                        {transaction.amount}
+                      </span>
+                    </td>
+                    <td className={styles.tableCell}>
+                      <span className={styles.date}>{transaction.date}</span>
+                    </td>
+                    <td className={styles.tableCell}>
+                      <span className={`${styles.statusBadge} ${transaction.statusColor}`}>
+                        {transaction.status}
+                      </span>
+                    </td>
+                    <td className={styles.tableCell}>
+                      <button className={styles.actionButton}>
+                        <Eye className={styles.iconSmall} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className={styles.pagination}>
+            <span className={styles.paginationText}>Showing 1 to 3 of 45 transactions</span>
+            <div className={styles.paginationButtons}>
+              <button className={styles.paginationButton}>
+                Previous
+              </button>
+              <button className={styles.paginationButtonActive}>
+                1
+              </button>
+              <button className={styles.paginationButton}>
+                2
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default Payment;

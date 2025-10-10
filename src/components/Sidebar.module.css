@@ -47,10 +47,10 @@
 .mobileMenuBtn {
   display: none; /* Hidden by default */
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 12px;
+  left: 8px;
   z-index: 1001;
-  background: #2a2a2a;
+ background-color: transparent;
   border: none;
   padding: 6px;
   border-radius: 6px;
@@ -89,15 +89,15 @@
 .logoIcon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.7rem;
-  color: white;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  background: #f59e0b;
+    color: #1a1a1a;
 }
 
 .logoText {
@@ -137,11 +137,10 @@
 }
 
 .navLink.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  background: #f59e0b;
+    color: #1a1a1a;
 }
-
 .navLink.active .navIcon {
   color: white;
 }
@@ -180,8 +179,7 @@
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 180px;
-    max-width: 85vw;
+    width: 200px;
   }
   .navLink {
     font-size: 0.85rem;

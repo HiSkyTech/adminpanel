@@ -527,8 +527,9 @@
     padding: 16px 12px;
     margin-top: 60px;
     margin-left: 0;
-    width: 100%;
+    width: 350px;
     background: #1a1a1a;
+    margin-left: -210px;
   }
   
   .header {

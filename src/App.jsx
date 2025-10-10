@@ -69,7 +69,6 @@
 
 // export default App;
 
-
 import './App.module.css';
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
@@ -79,19 +78,26 @@ import FoodPlans from "./pages/FoodPlans";
 import Exercise from "./pages/Exercise";  
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
-import FAQ from "./pages/Faq";
 import Login from "./pages/Login";
+import Forgot from "./pages/Forgot"; // ✅ Forgot Password Page
 import Layout from "./components/Layout";
 import Payment from "./pages/Payment"; 
-import Subscription from "./pages/Subscription"; // ✅ Subscription page
+import Subscription from "./pages/Subscription";
+import AddRecipe from './pages/AddRecipe';
+import AddExercise from './pages/AddExercise';
+import Reset from './pages/Reset';
+import Success from './pages/Success';
 
 function App() {
   return (
     <Routes>
-      {/* Login stays separate */}
+      {/* 🔐 Auth Routes */}
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot" element={<Forgot />} /> {/* ✅ Forgot Password Added */}
+      <Route path="/reset" element={<Reset />} /> {/* ✅ Forgot Password Added */}
+      <Route path="/success" element={<Success />} /> {/* ✅ Forgot Password Added */}
 
-      {/* Admin Panel with Sidebar + Topbar */}
+      {/* 🧭 Admin Panel with Sidebar + Topbar */}
       <Route
         path="/"
         element={
@@ -100,6 +106,7 @@ function App() {
           </Layout>
         }
       />
+
       <Route
         path="/users"
         element={
@@ -108,6 +115,7 @@ function App() {
           </Layout>
         }
       />
+
       <Route
         path="/coaches"
         element={
@@ -116,6 +124,7 @@ function App() {
           </Layout>
         }
       />
+
       <Route
         path="/food-plans"
         element={
@@ -124,6 +133,16 @@ function App() {
           </Layout>
         }
       />
+
+      <Route
+        path="/food-plans/add-recipe"
+        element={
+          <Layout>
+            <AddRecipe />
+          </Layout>
+        }
+      />
+
       <Route
         path="/exercise"
         element={
@@ -132,6 +151,16 @@ function App() {
           </Layout>
         }
       />
+
+      <Route
+        path="/exercise/add-exercise"
+        element={
+          <Layout>
+            <AddExercise />
+          </Layout>
+        }
+      />
+
       <Route
         path="/payment"
         element={
@@ -140,14 +169,16 @@ function App() {
           </Layout>
         }
       />
+
       <Route
-        path="/subscription"          // ✅ Added Subscription route
+        path="/subscription"
         element={
           <Layout>
             <Subscription />
           </Layout>
         }
       />
+
       <Route
         path="/profile"
         element={
@@ -156,14 +187,7 @@ function App() {
           </Layout>
         }
       />
-      <Route
-        path="/faq"
-        element={
-          <Layout>
-            <FAQ />
-          </Layout>
-        }
-      />
+
       <Route
         path="/settings"
         element={

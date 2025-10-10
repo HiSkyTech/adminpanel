@@ -2,14 +2,13 @@
 
 /* Container */
 .addRecipe {
-  margin-left: 150px;
+  margin-left: 20px;
   margin-top: 50px;
   padding: 32px;
   min-height: calc(100vh - 65px);
   background-color: #1a1a1a;
   display: flex;
   gap: 24px;
-  margin-right: 50px;
 }
 
 .mainSection {
@@ -74,8 +73,8 @@
 .select:focus,
 .textarea:focus {
   outline: none;
-  border-color:#f59e0b  ;
-  
+  border-color: #00d9ff;
+  box-shadow: 0 0 0 2px rgba(0, 217, 255, 0.1);
 }
 
 .input::placeholder,
@@ -111,6 +110,7 @@
 }
 
 .uploadBox:hover {
+  border-color: #00d9ff;
   background: #252525;
 }
 
@@ -121,7 +121,7 @@
 }
 
 .uploadBox:hover .uploadIcon {
-  color:#f59e0b;
+  color: #00d9ff;
 }
 
 .uploadBox p {
@@ -158,7 +158,7 @@
 
 .inputSmall:focus {
   outline: none;
-  border-color:#f59e0b;
+  border-color: #00d9ff;
 }
 
 .selectSmall {
@@ -175,7 +175,7 @@
 
 .selectSmall:focus {
   outline: none;
-  border-color:#f59e0b;
+  border-color: #00d9ff;
 }
 
 .selectSmall option {
@@ -187,7 +187,7 @@
 .stepNumber {
   width: 32px;
   height: 32px;
-  background:#f59e0b;
+  background: #00d9ff;
   color: #1a1a1a;
   border-radius: 50%;
   display: flex;
@@ -237,7 +237,7 @@
 }
 
 .addBtn:hover {
-  border-color:#f59e0b;
+  border-color: #00d9ff;
   color: white;
   background: rgba(0, 217, 255, 0.05);
 }
@@ -285,7 +285,7 @@
 
 .saveBtn {
   padding: 12px 32px;
-  background:#f59e0b;
+  background: #00d9ff;
   border: none;
   border-radius: 8px;
   color: #1a1a1a;
@@ -296,6 +296,7 @@
 }
 
 .saveBtn:hover {
+  background: #00c4e8;
   transform: translateY(-1px);
 }
 
@@ -307,7 +308,7 @@
 .sidebar {
   width: 300px;
   flex-shrink: 0;
-  margin-top: 47px;
+  margin-top: 42.5px;
 }
 
 .sidebarSection {
@@ -343,7 +344,7 @@
 .categoryItem:hover {
   background: #2a2a2a;
   transform: translateX(4px);
-  border-color:#f59e0b;
+  border-color: #00d9ff;
 }
 
 .categoryItem:active {
@@ -368,9 +369,8 @@
 }
 
 .categoryCount {
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-  background: #f59e0b;
-    color: #1a1a1a;
+  background: #00d9ff;
+  color: #1a1a1a;
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 0.7rem;
@@ -396,7 +396,7 @@
 .recentItem:hover {
   background: #2a2a2a;
   transform: translateY(-1px);
-
+  border-color: #00d9ff;
 }
 
 .recentItem:active {
@@ -406,7 +406,7 @@
 .recipeThumb {
   width: 48px;
   height: 48px;
-  background:#f59e0b;
+  background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
   border-radius: 8px;
   flex-shrink: 0;
 }

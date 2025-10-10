@@ -1,13 +1,17 @@
 // src/components/Topbar.jsx
 import { Bell, Settings, User, LogOut } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Import navigate
 import styles from "./Topbar.module.css";
 import NotificationModal from "./NotificationPopup";
-// import Settings from "../pages/Settings";
-import Profile from "../pages/Profile";
 
 function Topbar() {
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+  const navigate = useNavigate(); // ✅ Initialize navigate
+
+  const handleProfileClick = () => {
+    navigate("/profile"); // ✅ Navigate to Profile page
+  };
 
   return (
     <>
@@ -17,14 +21,9 @@ function Topbar() {
         </div>
 
         <div className={styles.rightSection}>
-          {/* Settings */}
-          <button className={styles.iconButton} aria-label="Settings">
-            <Settings size={20} />
-          </button>
-
-          {/* Notifications - Opens Modal */}
-          <button 
-            className={styles.iconButton} 
+          {/* Notifications */}
+          <button
+            className={styles.iconButton}
             aria-label="Notifications"
             onClick={() => setIsNotificationModalOpen(true)}
           >
@@ -32,12 +31,16 @@ function Topbar() {
             <span className={styles.badge}>3</span>
           </button>
 
-          {/* User Profile */}
-          <button className={styles.iconButton} aria-label="Profile">
+          {/* Profile */}
+          <button
+            className={styles.iconButton}
+            aria-label="Profile"
+            onClick={handleProfileClick} // ✅ Go to profile
+          >
             <User size={20} />
           </button>
 
-          {/* Logout Button */}
+          {/* Logout */}
           <button className={styles.logout}>
             <LogOut size={18} />
             <span>Logout</span>
@@ -46,7 +49,7 @@ function Topbar() {
       </div>
 
       {/* Notification Modal */}
-      <NotificationModal 
+      <NotificationModal
         isOpen={isNotificationModalOpen}
         onClose={() => setIsNotificationModalOpen(false)}
       />

@@ -30,8 +30,8 @@ function Sidebar() {
     { path: "/payment", label: "Payment", icon: CreditCard }, 
     { path: "/subscription", label: "Subscription", icon: Package }, 
     { path: "/profile", label: "Profile", icon: UserCircle },
-    { path: "/settings", label: "Settings", icon: Settings },
-    { path: "/faq", label: "FAQ", icon: HelpCircle }, 
+    // { path: "/settings", label: "Settings", icon: Settings },
+    // { path: "/faq", label: "FAQ", icon: HelpCircle }, 
   ];
 
   const isActive = (path) => location.pathname === path;
