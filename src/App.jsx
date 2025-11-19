@@ -68,132 +68,159 @@
 // }
 
 // export default App;
-
 import './App.module.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Coaches from "./pages/Coaches";
 import FoodPlans from "./pages/FoodPlans";
-import Exercise from "./pages/Exercise";  
+import Exercise from "./pages/Exercise";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
-import Forgot from "./pages/Forgot"; // ✅ Forgot Password Page
+import Forgot from "./pages/Forgot";
 import Layout from "./components/Layout";
-import Payment from "./pages/Payment"; 
+import Payment from "./pages/Payment";
 import Subscription from "./pages/Subscription";
 import AddRecipe from './pages/AddRecipe';
 import AddExercise from './pages/AddExercise';
 import Reset from './pages/Reset';
 import Success from './pages/Success';
 
+function PrivateRoute({ children }) {
+  const token = localStorage.getItem("adminToken"); // ✅ use the same key as Login.jsx
+  return token ? children : <Navigate to="/login" replace />;
+}
+
+
 function App() {
   return (
     <Routes>
-      {/* 🔐 Auth Routes */}
+      {/* Auth Routes */}
       <Route path="/login" element={<Login />} />
-      <Route path="/forgot" element={<Forgot />} /> {/* ✅ Forgot Password Added */}
-      <Route path="/reset" element={<Reset />} /> {/* ✅ Forgot Password Added */}
-      <Route path="/success" element={<Success />} /> {/* ✅ Forgot Password Added */}
+      <Route path="/forgot" element={<Forgot />} />
+      <Route path="/reset" element={<Reset />} />
+      <Route path="/success" element={<Success />} />
 
-      {/* 🧭 Admin Panel with Sidebar + Topbar */}
+      {/* Protected Routes */}
       <Route
         path="/"
         element={
-          <Layout>
-            <Dashboard />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Dashboard />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/users"
         element={
-          <Layout>
-            <Users />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Users />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/coaches"
         element={
-          <Layout>
-            <Coaches />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Coaches />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/food-plans"
         element={
-          <Layout>
-            <FoodPlans />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <FoodPlans />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/food-plans/add-recipe"
         element={
-          <Layout>
-            <AddRecipe />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <AddRecipe />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/exercise"
         element={
-          <Layout>
-            <Exercise />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Exercise />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/exercise/add-exercise"
         element={
-          <Layout>
-            <AddExercise />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <AddExercise />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/payment"
         element={
-          <Layout>
-            <Payment />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Payment />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/subscription"
         element={
-          <Layout>
-            <Subscription />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Subscription />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/profile"
         element={
-          <Layout>
-            <Profile />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Profile />
+            </Layout>
+          </PrivateRoute>
         }
       />
 
       <Route
         path="/settings"
         element={
-          <Layout>
-            <Settings />
-          </Layout>
+          <PrivateRoute>
+            <Layout>
+              <Settings />
+            </Layout>
+          </PrivateRoute>
         }
       />
     </Routes>
@@ -201,3 +228,4 @@ function App() {
 }
 
 export default App;
+
